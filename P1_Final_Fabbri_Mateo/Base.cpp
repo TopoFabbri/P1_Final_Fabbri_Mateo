@@ -8,3 +8,8 @@ Base::Base()
 Base::~Base()
 {
 }
+
+void Base::setActive(bool newActive)
+{
+	isActive = newActive;
+}

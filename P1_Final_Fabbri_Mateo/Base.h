@@ -1,4 +1,5 @@
 #pragma once
+
 class Base
 {
 protected:
@@ -11,4 +12,6 @@ public:
 	virtual void begin() = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
+
+	void setActive(bool newActive);
 };
