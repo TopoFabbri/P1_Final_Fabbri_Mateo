@@ -1,11 +1,15 @@
 #include "Asteroid.h"
 
+int Asteroid::activeInstances = 0;
+
 Asteroid::Asteroid(int id)
 {
+	activeInstances++;
 	this->id = id;
 	boxCollider = { 3, 3 };
 	mesh = "/-\\|+|\\-/";
 	color = Color::BROWN;
+	reappear = true;
 }
 
 Asteroid::~Asteroid()
@@ -14,12 +18,15 @@ Asteroid::~Asteroid()
 
 void Asteroid::begin()
 {
-	isActive = true;
+	if (reappear)
+	{
+		isActive = true;
 
-	pos.x = static_cast<float>(rand() % static_cast<int>(getScreenWidth()));
-	speed = static_cast<float>(rand() % 10 + 1) / 100;
-	pos.y = -1;
-	erase();
+		pos.x = static_cast<float>(rand() % static_cast<int>(getScreenWidth()));
+		speed = static_cast<float>(rand() % 10 + 1) / 100;
+		pos.y = -1;
+		erase();
+	}
 }
 
 void Asteroid::update()
@@ -31,7 +38,15 @@ void Asteroid::update()
 	fall();
 }
 
+void Asteroid::destroy()
+{
+	reappear = false;
+	isActive = false;
+	activeInstances--;
+}
+
 void Asteroid::fall()
 {
-	pos.y += speed;
+	if (isActive)
+		pos.y += speed;
 }

@@ -13,25 +13,28 @@ GameObject::~GameObject()
 
 void GameObject::draw()
 {
-	erase();
-	Vector2 cursor = { pos.x - boxCollider.x / 2, pos.y - boxCollider.y / 2 };
-
-	setForegroundColor(color);
-
-	for (int i = 0; i < boxCollider.y; i++)
+	if (isActive)
 	{
-		goToCoordinates(cursor);
+		erase();
+		Vector2 cursor = { pos.x - boxCollider.x / 2, pos.y - boxCollider.y / 2 };
 
-		for (int j = 0; j < boxCollider.x; j++)
+		setForegroundColor(color);
+
+		for (int i = 0; i < boxCollider.y; i++)
 		{
-			if (cursor.y > 2)
-				std::cout << mesh[static_cast<int>(boxCollider.x * i + j)];
+			goToCoordinates(cursor);
+
+			for (int j = 0; j < boxCollider.x; j++)
+			{
+				if (cursor.y > 2)
+					std::cout << mesh[static_cast<int>(boxCollider.x * i + j)];
+			}
+
+			cursor.y++;
 		}
 
-		cursor.y++;
+		setForegroundColor(Color::WHITE);
 	}
-
-	setForegroundColor(Color::WHITE);
 }
 
 void GameObject::erase()
@@ -95,13 +98,7 @@ bool GameObject::collideWall(Vector2 map)
 	if (upLeft.x <= 1)
 		return true;
 
-	if (upLeft.y <= 1)
-		return true;
-
 	if (lowRight.x > map.x)
-		return true;
-
-	if (lowRight.y >= map.y + 1)
 		return true;
 
 	return false;

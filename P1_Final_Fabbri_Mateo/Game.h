@@ -9,10 +9,14 @@ class Game : public Base
 {
 protected:
 	static const int astQty = 10;
+	static const int bulQty = 10;
+
+	bool lost;
 
 	Base* ship;
 	Base* hud;
 	Base* asteroids[astQty];
+	Base* bul[bulQty];
 
 public:
 	Game();
@@ -25,4 +29,6 @@ public:
 	void draw() override;
 
 	void input();
+	void collisions();
+	bool isGameOver();
 };

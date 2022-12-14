@@ -30,11 +30,16 @@ void HUD::draw()
 	goToCoordinates({ 1, 0 });
 	std::cout << "Score: " << score;
 
+	goToCoordinates({ getScreenWidth() - 17, 0 });
+	std::cout << "                 ";
+	goToCoordinates({ getScreenWidth() - 17, 0 });
+	std::cout << "Asteroids left " << Asteroid::activeInstances;
+
 	goToCoordinates({ getScreenWidth() / 2 - 1, 0 });
 	std::cout << "      ";
 	goToCoordinates({ getScreenWidth() / 2 - 1, 0 });
 	for (int i = 0; i < lives; i++)
 	{
-		std::cout << "<3";
+		std::cout << static_cast<char>(3);
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Base.h"
 #include "Ship.h"
+#include "Asteroid.h"
 
 class HUD : public Base
 {
