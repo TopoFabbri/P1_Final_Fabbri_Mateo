@@ -16,9 +16,6 @@ public:
 	void begin() override;
 	void update() override;
 
-	void drawWin();
-	void drawLose();
-
 	void destroy();
 	void fall();
 };

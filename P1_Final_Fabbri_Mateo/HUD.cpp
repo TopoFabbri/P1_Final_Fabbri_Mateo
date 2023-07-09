@@ -9,7 +9,6 @@ HUD::HUD(Ship* ship)
 
 HUD::~HUD()
 {
-	delete ship;
 }
 
 void HUD::begin()
@@ -42,4 +41,13 @@ void HUD::draw()
 	{
 		std::cout << static_cast<char>(3);
 	}
+}
+
+void HUD::drawEnd(bool lost)
+{
+	goToCoordinates({ getScreenWidth() / 2 - 4, getScreenHeight() / 2 });
+	if (lost)
+		std::cout << "YOU LOSE!";
+	else
+		std::cout << "YOU WIN!";
 }

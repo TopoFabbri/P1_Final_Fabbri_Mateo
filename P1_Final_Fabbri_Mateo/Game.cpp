@@ -22,8 +22,7 @@ Game::~Game()
 	for (int i = 0; i < astQty; i++)
 		delete asteroids[i];
 
-	for (int i = 0; i < bulQty; i++)
-		delete bul[i];
+	clearScreen();
 }
 
 void Game::loop()
@@ -69,18 +68,6 @@ void Game::update()
 
 	input();
 	collisions();
-
-	if (isGameOver())
-	{
-		clearScreen();
-
-		if (lost)
-			std::cout << "YOU LOSE!\n";
-		else
-			std::cout << "YOU WIN!\n";
-
-		isActive = false;
-	}
 }
 
 void Game::draw()
@@ -103,7 +90,17 @@ void Game::draw()
 		dynamic_cast<Asteroid*>(asteroids[i])->erase();
 		asteroids[i]->draw();
 	}
+
 	drawFrame({ 0, 1 }, { getScreenWidth() - 1, getScreenHeight() - 1 });
+
+	if (isGameOver())
+	{
+		dynamic_cast<HUD*>(hud)->drawEnd(lost);
+
+		getKey(true);
+
+		isActive = false;
+	}
 }
 
 void Game::input()

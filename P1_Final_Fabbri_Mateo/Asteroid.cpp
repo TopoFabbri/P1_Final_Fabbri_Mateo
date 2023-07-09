@@ -10,6 +10,7 @@ Asteroid::Asteroid(int id)
 	mesh = "/-\\|+|\\-/";
 	color = Color::BROWN;
 	reappear = true;
+	speed = 0;
 }
 
 Asteroid::~Asteroid()

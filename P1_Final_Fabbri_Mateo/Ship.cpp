@@ -11,6 +11,7 @@ Ship::Ship(Vector2 pos)
 	speed = 1;
 	lives = 3;
 	score = 0;
+
 	for (int i = 0; i < bulQty; i++)
 		bul[i] = new Bullet(11 + i);
 }

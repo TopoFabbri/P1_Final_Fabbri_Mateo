@@ -17,4 +17,6 @@ public:
 	void begin() override;
 	void update() override;
 	void draw() override;
+
+	void drawEnd(bool lost);
 };
